@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class ServerImproved {
 
@@ -9,7 +10,9 @@ public class ServerImproved {
     private Socket serverSocket;
     private PrintWriter outgoing;
 
-    public ServerImproved(int port, String messageToClient) {
+    public ServerImproved(int port, String[] messageToClient) {
+        //String[] thoughts = {"To be or not to be...", "For a man to conquer himself is the first and noblest of all victories...",
+                //"Everything we hear is an opinion, not a fact. Everything we see is a perspective, not the truth..."};
         try {
             listener = new ServerSocket(port);
             System.out.println("Ready and waiting for incoming connections on port " + port + "...");
@@ -17,8 +20,12 @@ public class ServerImproved {
             while(true) {
                 serverSocket = listener.accept();
                 System.out.println("Client connected!");
-                outgoing = new PrintWriter(serverSocket.getOutputStream(), true);
-                outgoing.println(messageToClient);
+                Scanner incoming = new Scanner(serverSocket.getInputStream());
+                while(incoming.hasNext()) {
+                    outgoing = new PrintWriter(serverSocket.getOutputStream(), true);
+                    outgoing.println(messageToClient[Integer.parseInt(incoming.nextLine())]);
+                }
+
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -26,6 +33,8 @@ public class ServerImproved {
     }
 
 public static void main(String[] args) {
-        ServerImproved server = new ServerImproved(54321, "Hi there!");
+    String[] thoughts = {"To be or not to be...", "For a man to conquer himself is the first and noblest of all victories...",
+            "Everything we hear is an opinion, not a fact. Everything we see is a perspective, not the truth..."};
+    ServerImproved server = new ServerImproved(54321, thoughts);
 }
 }

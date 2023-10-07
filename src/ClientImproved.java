@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
@@ -12,8 +13,15 @@ public class ClientImproved {
         try {
             clientSocket = new Socket(ipAddress, port);
             System.out.println("Connected to " + ipAddress + " on port " + port);
+            System.out.println("Press Ctrl+C or Ctrl+D to quit");
+            Scanner userInput = new Scanner(System.in);
             incoming = new Scanner(clientSocket.getInputStream());
-            System.out.println(incoming.nextLine());
+            PrintWriter outgoing = new PrintWriter(clientSocket.getOutputStream(), true);
+
+            while(userInput.hasNext()) {
+                outgoing.println(userInput.nextLine());
+                System.out.println(incoming.nextLine());
+            }
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {

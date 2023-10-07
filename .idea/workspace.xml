@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7951c240-d068-4abb-aa16-a89f9fe30fa0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/csc8434-clientserver.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ClientImproved.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ServerImproved.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Reflection" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClientImproved.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClientImproved.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ServerImproved.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServerImproved.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,11 +58,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1696010315300</updated>
-      <workItem from="1696010316018" duration="13604000" />
+      <workItem from="1696010316018" duration="17836000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
