@@ -8,22 +8,29 @@ public class ServerImproved {
 
     private ServerSocket listener;
     private Socket serverSocket;
+    private Scanner incoming;
     private PrintWriter outgoing;
+    private String[] thoughts = {"To be or not to be...", "For a man to conquer himself is the first and noblest of all victories...", "Everything we hear is an opinion, not a fact. Everything we see is a perspective, not the truth..."};
 
-    public ServerImproved(int port, String[] messageToClient) {
-        //String[] thoughts = {"To be or not to be...", "For a man to conquer himself is the first and noblest of all victories...",
-                //"Everything we hear is an opinion, not a fact. Everything we see is a perspective, not the truth..."};
+    /**
+     * Constructor to create the server with a persistent connection to the client.
+     * Takes multiple inputs from the client and responds accordingly with a philosophical thought.
+     *
+     * @param port            - port number to listen on
+     */
+    public ServerImproved(int port) {
         try {
             listener = new ServerSocket(port);
             System.out.println("Ready and waiting for incoming connections on port " + port + "...");
 
-            while(true) {
+            while (true) {
                 serverSocket = listener.accept();
                 System.out.println("Client connected!");
-                Scanner incoming = new Scanner(serverSocket.getInputStream());
-                while(incoming.hasNext()) {
+                incoming = new Scanner(serverSocket.getInputStream());
+                // Maintains connection whilst there is user input
+                while (incoming.hasNext()) {
                     outgoing = new PrintWriter(serverSocket.getOutputStream(), true);
-                    outgoing.println(messageToClient[Integer.parseInt(incoming.nextLine())]);
+                    outgoing.println(thoughts[Integer.parseInt(incoming.nextLine())]); // Reads the integer input from the client and responds with the relevant quote
                 }
 
             }
@@ -32,9 +39,7 @@ public class ServerImproved {
         }
     }
 
-public static void main(String[] args) {
-    String[] thoughts = {"To be or not to be...", "For a man to conquer himself is the first and noblest of all victories...",
-            "Everything we hear is an opinion, not a fact. Everything we see is a perspective, not the truth..."};
-    ServerImproved server = new ServerImproved(54321, thoughts);
-}
+    public static void main(String[] args) {
+        ServerImproved server = new ServerImproved(54321);
+    }
 }
