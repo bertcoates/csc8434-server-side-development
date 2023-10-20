@@ -16,7 +16,7 @@ public class ServerImproved {
      * Constructor to create the server with a persistent connection to the client.
      * Takes multiple inputs from the client and responds accordingly with a philosophical thought.
      *
-     * @param port            - port number to listen on
+     * @param port - port number to listen on
      */
     public ServerImproved(int port) {
         try {
@@ -26,11 +26,28 @@ public class ServerImproved {
             while (true) {
                 serverSocket = listener.accept();
                 System.out.println("Client connected!");
+                outgoing = new PrintWriter(serverSocket.getOutputStream(), true);
                 incoming = new Scanner(serverSocket.getInputStream());
                 // Maintains connection whilst there is user input
                 while (incoming.hasNext()) {
-                    outgoing = new PrintWriter(serverSocket.getOutputStream(), true);
-                    outgoing.println(thoughts[Integer.parseInt(incoming.nextLine())]); // Reads the integer input from the client and responds with the relevant quote
+                    String selection = incoming.nextLine(); // Takes user input from client
+                    int quoteNumber = 0;
+                    int maxQuoteNumber = thoughts.length;
+                    String invalidInput = "Input invalid: Must be an integer within range 1 - " + maxQuoteNumber;
+                    try {
+                        quoteNumber = Integer.parseInt(selection); // Checks input from client is an integer
+                    } catch (Exception notInteger) {
+                        outgoing.println(invalidInput);
+                    } finally {
+                        if (quoteNumber >= 1 && quoteNumber <= maxQuoteNumber) { // Checks input from client is within range
+                            outgoing.println(thoughts[(quoteNumber) - 1]); // Reads the integer input from the client and responds with the relevant quote
+                        }
+                        else {
+                            outgoing.println(invalidInput); // Sends client a message if out of range or not an integer
+                        }
+                    }
+
+
                 }
 
             }
